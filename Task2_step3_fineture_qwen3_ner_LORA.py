@@ -25,7 +25,7 @@ import random
 # --- Configuration ---
 MODEL_NAME = "Qwen/Qwen3-4B"  # HuggingFace model hub name
 OUTPUT_DIR = "./task2/qwen3_ner_finetuned_10_LORA_allDATA_CombinePre"
-DATA_PATH = "./task2/merged_output_CombinePre.json"  # Path to your NER training data (see below for format)
+DATA_PATH = "./merged_output.json"  # Path to your NER training data (see below for format)
 MAX_LENGTH = 3072
 BATCH_SIZE  = 2
 EPOCHS = 3
@@ -40,9 +40,6 @@ LORA_R = 64  # LoRA rank
 LORA_ALPHA = 128  # LoRA alpha
 LORA_DROPOUT = 0.1  # LoRA dropout
 
-# --- Data Preparation ---
-# The training data should be a JSONL file with lines like:
-# {"text": "John Smith is 45 years old.", "entities": [{"text": "John Smith", "category": "PATIENT"}, {"text": "45", "category": "AGE"}]}
 
     
 def set_seed(seed=42):
@@ -271,31 +268,30 @@ def main():
         output_dir=OUTPUT_DIR,
         per_device_train_batch_size=BATCH_SIZE,
         per_device_eval_batch_size=2,
-        gradient_accumulation_steps=4,     # <--- 新增：模擬更大的有效批次
-        eval_accumulation_steps=2,         # <--- 新增：減少評估時記憶體壓力
+        gradient_accumulation_steps=4,    
+        eval_accumulation_steps=2,        
         num_train_epochs=EPOCHS,
         learning_rate=LEARNING_RATE,
-        save_strategy="steps",         # <--- 修改
-        save_steps=500,                # <--- 新增 (例如每 500 steps 保存一次)
-        
-        eval_strategy="steps",         # <--- 修改
+        save_strategy="steps",      
+        save_steps=500,               
+        eval_strategy="steps",        
         eval_steps=100, 
         save_total_limit=2,
         logging_steps=10,
-        fp16=not ENABLE_QUANTIZATION,  # 如果使用量化，不要用 fp16
-        bf16=False,  # 與量化衝突
+        fp16=not ENABLE_QUANTIZATION,  
+        bf16=False, 
         report_to=["tensorboard"],
         remove_unused_columns=False,
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
         greater_is_better=False,
         optim="paged_adamw_8bit",
-        group_by_length=True,              # <--- 新增：將相似長度的樣本分組
-        warmup_steps=20,                   # <--- 新增：學習率預熱
-        lr_scheduler_type="cosine",        # <--- 新增：學習率調度器
-        weight_decay=0.01,                 # <--- 新增：權重衰減
-        dataloader_pin_memory=False        # <--- 在記憶體緊張時可以關閉
-    )    # Trainer with early stopping and evaluation
+        group_by_length=True,           
+        warmup_steps=20,                   
+        lr_scheduler_type="cosine",        
+        weight_decay=0.01,                
+        dataloader_pin_memory=False 
+    )     
     trainer = Trainer(
         model=model,
         args=training_args,

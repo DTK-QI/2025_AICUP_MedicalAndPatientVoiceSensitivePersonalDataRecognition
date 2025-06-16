@@ -395,7 +395,7 @@ def main():
     processor = WhisperProcessor.from_pretrained(model_name)
 
     # Prepare dataset
-    dataset = prepare_dataset("E:\\YuanSynologyNas\\datasets\\去識別語音資料集\\dataset\\TRAINGING_DATASET_1\\Training_Dataset_01\\audio","E:\\YuanSynologyNas\\datasets\\去識別語音資料集\\private")
+    dataset = prepare_dataset("XXXX","XXX")
     
 
     # Process datasets
@@ -410,8 +410,8 @@ def main():
         )
     
     # Initialize data collator
-    final_model_path = os.path.join(model_dir, "final")
-    final_ct2_model_path = os.path.join(model_dir, "final_ct2")
+    final_model_path = model_dir
+    final_ct2_model_path = os.path.join(model_dir,"..", "final_ct2")
     print(f"Model saved to {final_model_path}")
 
 

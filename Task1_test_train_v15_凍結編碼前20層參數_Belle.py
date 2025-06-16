@@ -387,7 +387,7 @@ def main():
     # model = model.to(device)
     
     # Prepare dataset
-    dataset = prepare_dataset("E:\\YuanSynologyNas\\datasets\\去識別語音資料集\\dataset\\audio","E:\YuanSynologyNas\datasets\去識別語音資料集\private")
+    dataset = prepare_dataset("XXX","XXX")
 
     # Process datasets
     
@@ -416,7 +416,7 @@ def main():
         gradient_checkpointing=True,
         fp16=True,
         optim="adamw_bnb_8bit",
-        evaluation_strategy="steps",
+        eval_strategy="steps",
         eval_steps=50,
         save_steps=100,
         logging_steps=10,

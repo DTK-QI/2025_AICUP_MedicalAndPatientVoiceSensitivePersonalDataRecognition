@@ -142,20 +142,7 @@ def reconstruct_text_from_words_zh(words: List[Dict[str, Any]]) -> str:
     """Reconstruct the full text from the word list."""
     # Filter out potential null entries or entries without 'word'
     return "".join(word_data.get("word", "") for word_data in words if word_data and "word" in word_data).strip()
-# def fuzzy_find_entity_in_transcript(entity_text_norm, transcript_words_norm, cutoff=0.85):
-#     """
-#     Fuzzy match entity_text_norm (str) to a sequence in transcript_words_norm (list of str).
-#     Returns (start_idx, end_idx) if found, else None.
-#     """
-#     entity_words = entity_text_norm.split()
-#     n = len(entity_words)
-#     for i in range(len(transcript_words_norm) - n + 1):
-#         window = transcript_words_norm[i:i+n]
-#         # Use difflib.SequenceMatcher to compare joined strings
-#         ratio = difflib.SequenceMatcher(None, " ".join(window), " ".join(entity_words)).ratio()
-#         if ratio >= cutoff:
-#             return i, i+n-1
-#     return None
+
 
 def fuzzy_find_entity_in_transcript(entity_text_norm, transcript_words_norm, is_chinese=False, cutoff=0.85):
     """
