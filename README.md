@@ -1,0 +1,2 @@
+# 2025_AICUP_MedicalAndPatientVoiceSensitivePersonalDataRecognition
+2025AICUP_醫病語音敏感個人資料辨識競賽
