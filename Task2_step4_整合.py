@@ -20,19 +20,12 @@ except Exception as e:
     print(f"Warning: opencc initialization failed: {e}")
     converter_t2s = None
 
-# Load environment variables (for API key)
-load_dotenv()
-GROK_API_KEY = os.getenv('GROK_API_KEY')
 
 # --- Configuration ---
 MODEL_PATH = "./task2/qwen3_ner_finetuned_9_LORA_allDATA"
 TIME_STEP_JSON_PATH = "result/task1/v15_Belle_large_v3_train_凍結編碼前20層參數/val_time_step.json"
 OUTPUT_TSV_PATH = "result/task2/v20_8/task2_answer.txt" # Changed output path to task2
 ENTITY_DICT_PATH = "e:\\Yuan\\SideProject\\WhisperNER\\task2\\entities.json" # Path to your entity dictionary
-LLM_MODEL = "grok-3" # Grok model - use the appropriate one (e.g., llama3-70b-8192)
-LLM_API_URL = 'https://api.x.ai/v1/chat/completions' #  API URL
-# LLM_MODEL = "gemma3:27B" # Grok model - use the appropriate one (e.g., llama3-70b-8192)
-# LLM_API_URL = 'http://localhost:11434/v1/chat/completions' #  API URL
 TAG_List = [
   "PATIENT",
   "DOCTOR",
