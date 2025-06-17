@@ -51,6 +51,9 @@ The project is structured into two main tasks:
     *   Matches identified entities to their corresponding timestamps from the ASR output.
     *   Handles both English and Chinese text (using `opencc` for Chinese text normalization).
     *   Outputs the final list of entities with timestamps to a TSV file (e.g., `result/task2/.../task2_answer.txt`).
+       
+    *   ![image](https://github.com/user-attachments/assets/ff4c8df3-f9ff-4edf-9e61-fe8475189ea2)
+
 
 ### Key Data Files
 
@@ -70,6 +73,15 @@ The project is structured into two main tasks:
         *   Stores the fine-tuned Qwen3 NER model artifacts.
     *   **`result/task2/v20_8/`**:
         *   Contains the final NER output file `task2_answer.txt`, which lists detected sensitive entities with their timestamps.
+
+## Score
+
+| 模型版本           | WER    | CER    |
+|--------------------|--------|--------|
+| v3（只訓練最後20層）   | 9.31%  | 4.44%  |
+| v3-zh（只訓練最後20層） | 7.86%  | 4.17%  |
+| v3-zh（全部微調）      | 8.51%  | 4.23%  |
+
 
 ## Setup
 
