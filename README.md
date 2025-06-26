@@ -26,6 +26,7 @@ The project is structured into two main tasks:
     *   Handles the fine-tuning of the `BELLE-2/Belle-whisper-large-v3-zh` ASR model.
     *   Freezes the first 20 encoder layers during training.
     *   Performs transcription and evaluates using WER (Word Error Rate) and CER (Character Error Rate).
+    *   !!!Since whisper Normalizer itself has problems and the competition will also go through a unified Normalizer when calculating the score, this program only implements a customized simplified version of Normalizer. If you want to implement experimental scores, it is recommended to replace it with whisper Normalizer for verification and testing.!!!
 
 *   **[`Task2_step1_HF2CT.py`](Task2_step1_HF2CT.py):**
     *   Converts the Hugging Face ASR model (likely from Task 1) to the CTranslate2 format for optimized inference.
